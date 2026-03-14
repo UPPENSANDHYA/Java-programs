@@ -1,0 +1,27 @@
+import java.util.LinkedList;
+import java.util.Queue;
+public class QueueDemo1 {
+    public static void main(String[] args){
+        Queue<String>queue=new LinkedList<>();
+
+        queue.add("Customer 1");
+        queue.add("Customer 2");
+        queue.add("Customer 3");
+        queue.add("Customer 4");
+
+        System.out.println("queue:"+queue);
+        String served=queue.poll();
+        System.out.println("Served:"+served);
+        System.out.println("Queue after serving one customer:"+queue);
+        System.out.println("Next customer to serve:"+queue.peek());
+
+        queue.add("Customer 5");
+        System.out.println("Queue after new customer arrives:"+queue);
+        System.out.println("\nServing all remaining customers:");
+        while(!queue.isEmpty()){
+            System.out.println("Served:"+queue.poll());
+        }
+        System.out.println("Queue empty?"+queue.isEmpty());
+    }
+
+}
