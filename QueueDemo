@@ -1,0 +1,72 @@
+import java.util.Queue;
+
+public class QueueDemo {
+    public static void main(String[] args) {
+        Queue1 queue = new Queue1(6);
+        queue.insert(3);
+        queue.insert(5);
+        queue.insert(9);
+        queue.insert(1);
+        queue.insert(12);
+        queue.insert(15);
+        if (queue.isFull()) {
+            System.out.println("Queue is full!");
+        }
+        int num = queue.remove();
+        System.out.println("Element removes:" + num);
+        queue.insert(16);
+        queue.insert(17);
+        queue.insert(18);
+        System.out.println("Elemen at front:" + queue.peek());
+        System.out.println("---------------");
+        System.out.println("index:5 4 3 2 1 0");
+        System.out.println("----------------");
+        System.out.println("queue:");
+        while (!queue.isEmpty()) {
+            int n = queue.remove();
+            System.out.println(n + " ");
+        }
+    }
+}
+class Queue1{
+    private final int MAX;
+    private int[] intArray;
+    private int front;
+    private int rear;
+    private int itemCount;
+    public Queue1(int size){
+        MAX=size;
+        front=0;
+        rear=-1;
+        itemCount=0;
+    }
+    public void insert(int data){
+        if(!isFull()){
+            if(rear==MAX-1){
+                rear=-1;
+            }
+            intArray[++rear]=data;
+            itemCount++;
+        }
+    }
+    public int remove(){
+        int data=intArray[front++];
+        if(front==MAX){
+            front=0;
+        }
+        itemCount--;
+        return data;
+    }
+    public int peek(){
+        return intArray[front];
+    }
+    public boolean isEmpty(){
+        return itemCount==0;
+    }
+    public boolean isFull(){
+        return itemCount==MAX;
+    }
+    public int size(){
+        return itemCount;
+    }
+}
